@@ -42,7 +42,7 @@ pub mod tic_tac_toe {
 
 #[derive(Accounts)]
 pub struct Initialize<'info> {
-    #[account(init, payer = player, space = 1024)]
+    #[account(init, payer = player, space = 64)]
     pub game: Account<'info, Game>,
     #[account(mut)]
     pub player: Signer<'info>,
