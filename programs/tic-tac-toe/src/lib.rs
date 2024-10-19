@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("3WMgLss6hFb7z99fuPf8uWT49ifFd3DwKetgAhov7zJN");
+declare_id!("5xD2yUE3PTnb5LbcioaYtskELvJTFuBjcRfA5vmZhS8B");
 
 #[program]
 pub mod tic_tac_toe {
