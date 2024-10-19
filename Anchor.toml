@@ -11,11 +11,14 @@ tic_tac_toe = "5xD2yUE3PTnb5LbcioaYtskELvJTFuBjcRfA5vmZhS8B"
 [programs.devnet]
 tic_tac_toe = "5xD2yUE3PTnb5LbcioaYtskELvJTFuBjcRfA5vmZhS8B"
 
+[programs.mainnet]
+tic_tac_toe = "5xD2yUE3PTnb5LbcioaYtskELvJTFuBjcRfA5vmZhS8B"
+
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "localnet"
+cluster = "mainnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
