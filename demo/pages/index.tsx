@@ -18,7 +18,6 @@ export default function Home() {
   const [program, setProgram] = useState<Program<TicTacToe> | null>(null);
   const [gameAccount, setGameAccount] = useState<PublicKey | null>(null);
   const [board, setBoard] = useState<BoardState>(Array(3).fill(Array(3).fill(null)));
-  const [currentPlayer, setCurrentPlayer] = useState<boolean>(true);
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
@@ -74,7 +73,6 @@ export default function Home() {
 
     const gameState = await program.account.game.fetch(gameAccount);
     setBoard(gameState.board as BoardState);
-    setCurrentPlayer(gameState.currentPlayer);
 
     if (!gameState.isActive) {
       setMessage('Game ended.');
