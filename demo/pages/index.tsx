@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { PublicKey, Keypair } from '@solana/web3.js';
 import { Program } from '@coral-xyz/anchor';
 import { getAnchorClient } from '../utils/anchor-client';
 import { TicTacToe } from '@/tic_tac_toe';
+import dynamic from 'next/dynamic';
 
 type BoardState = (boolean | null)[][];
+
+const WalletMultiButtonDynamic = dynamic(
+  async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false }
+);
 
 export default function Home() {
   const { publicKey, signTransaction, signAllTransactions } = useWallet();
@@ -80,11 +85,11 @@ export default function Home() {
 
   return (
     <div className="container">
-      <h1>Tic-Tac-Toe on Solana</h1>
-      <WalletMultiButton />
+      <h1>Tic-Tac-Toe on Solana Devnet</h1>
+      <WalletMultiButtonDynamic />
       {publicKey && (
         <>
-          <button onClick={initializeGame}>Initialize Game</button>
+          <button className="button" onClick={initializeGame}>Initialize Game</button>
           <div className="board">
             {board.map((row, i) => (
               row.map((cell, j) => (
@@ -97,30 +102,54 @@ export default function Home() {
           <p>{message}</p>
         </>
       )}
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 2rem;
-        }
-        .board {
-          display: grid;
-          grid-template-columns: repeat(3, 100px);
-          gap: 5px;
-          margin-top: 1rem;
-        }
-        .cell {
-          width: 100px;
-          height: 100px;
-          border: 1px solid black;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 24px;
-          cursor: pointer;
-        }
-      `}</style>
+    <style jsx>{`
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+      }
+      .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 5px;
+        margin-top: 1rem;
+      }
+      .cell {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      .button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        border: none;
+        transition-duration: 0.4s;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      }
+      .cool-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+      .cool-button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+    `}</style>
     </div>
   );
 }
