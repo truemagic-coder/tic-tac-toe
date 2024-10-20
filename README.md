@@ -14,7 +14,7 @@ This app is deployed to [https://tictactoe.walletbubbles.com](https://tictactoe.
 - `anchor keys list`
 - copy key into `src/lib.rs`, `Anchor.toml`, and `demo/tic_tac_toe.json`
 - in new terminal tab run `solana-test-validator` and keep running
-- make sure you have airdropped SOL to your wallet (in the instructions - first step)
+- make sure you have airdropped at least 3 SOL to your wallet (in the instructions - first step)
 - `anchor deploy`
 - `cd demo`
 - `yarn install`
